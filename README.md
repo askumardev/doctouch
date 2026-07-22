@@ -12,4 +12,5 @@
 ## Server up after setup
 ```
 * docker compose up
+* docker compose down
 ```
