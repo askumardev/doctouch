@@ -1,0 +1,31 @@
+FROM ruby:3.4.5
+
+WORKDIR /rails
+
+RUN apt-get update -qq && \
+    apt-get install -y \
+    build-essential \
+    libpq-dev \
+    postgresql-client \
+    curl \
+    git
+
+# Install Node 20
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs
+
+RUN npm install -g yarn
+
+COPY Gemfile Gemfile.lock ./
+
+RUN bundle install
+
+COPY package.json yarn.lock ./
+
+RUN yarn install
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["bin/dev"]
