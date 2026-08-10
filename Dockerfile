@@ -30,6 +30,8 @@ RUN yarn install
 
 COPY . .
 
+RUN yarn build
+
 RUN chown -R appuser:appuser /rails
 
 USER appuser

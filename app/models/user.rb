@@ -8,4 +8,12 @@ class User < ApplicationRecord
   has_many :clinics, through: :clinic_memberships
 
   validates :email, presence: true, uniqueness: true
+
+  def has_role?(role_name)
+    roles.exists?(name: role_name.to_s)
+  end
+
+  def super_admin?
+    has_role?("super_admin")
+  end
 end

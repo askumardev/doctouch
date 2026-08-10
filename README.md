@@ -3,6 +3,7 @@
 * docker compose down
 * docker compose up --build
 * docker compose ps
+* docker compose up
 * docker compose exec web rails db:create
 * docker compose exec web rails db:migrate
 * docker compose exec web rails db:seed

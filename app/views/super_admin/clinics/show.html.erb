@@ -1,0 +1,80 @@
+<h1><%= @clinic.name %></h1>
+
+<p>
+  <%= link_to "Back", super_admin_root_path, class: "btn btn-secondary" %>
+  <%= link_to "Edit", edit_super_admin_clinic_path(@clinic), class: "btn btn-primary" %>
+  <%= link_to "Logout", super_admin_logout_path, method: :delete, class: "btn btn-secondary" %>
+</p>
+
+<table class="table">
+  <tbody>
+    <tr>
+      <th>Name</th>
+      <td><%= @clinic.name %></td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td><%= @clinic.email %></td>
+    </tr>
+    <tr>
+      <th>Phone</th>
+      <td><%= @clinic.phone %></td>
+    </tr>
+    <tr>
+      <th>Address</th>
+      <td><%= @clinic.address %></td>
+    </tr>
+    <tr>
+      <th>Registration Number</th>
+      <td><%= @clinic.registration_number %></td>
+    </tr>
+    <tr>
+      <th>Status</th>
+      <td><%= @clinic.status %></td>
+    </tr>
+    <tr>
+      <th>Subscription Plan</th>
+      <td><%= @clinic.subscription_plan %></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Clinic admins</h2>
+
+<%= form_with model: [@clinic, ClinicAdmin.new], url: super_admin_clinic_clinic_admins_path(@clinic), local: true do |form| %>
+  <div class="mb-3">
+    <%= form.label :email %>
+    <%= form.email_field :email, class: "form-control", required: true %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :password %>
+    <%= form.password_field :password, class: "form-control", required: true %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation, class: "form-control", required: true %>
+  </div>
+
+  <%= form.submit "Create Clinic Admin", class: "btn btn-primary" %>
+<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @clinic.clinic_memberships.includes(:user).each do |membership| %>
+      <tr>
+        <td><%= membership.user.email %></td>
+        <td><%= membership.user.status %></td>
+        <td>
+          <%= link_to "Delete", super_admin_clinic_clinic_admin_path(@clinic, membership.user), method: :delete, data: { confirm: "Delete admin?" }, class: "btn btn-sm btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

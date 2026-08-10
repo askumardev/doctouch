@@ -1,0 +1,33 @@
+<h1>Clinics</h1>
+
+<p>
+  <%= link_to "New Clinic", new_super_admin_clinic_path, class: "btn btn-primary" %>
+  <%= link_to "Logout", super_admin_logout_path, method: :delete, class: "btn btn-secondary" %>
+</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @clinics.each do |clinic| %>
+      <tr>
+        <td><%= clinic.name %></td>
+        <td><%= clinic.email %></td>
+        <td><%= clinic.phone %></td>
+        <td><%= clinic.status %></td>
+        <td>
+          <%= link_to "View", super_admin_clinic_path(clinic), class: "btn btn-sm btn-outline-primary" %>
+          <%= link_to "Edit", edit_super_admin_clinic_path(clinic), class: "btn btn-sm btn-outline-secondary" %>
+          <%= link_to "Delete", super_admin_clinic_path(clinic), method: :delete, data: { confirm: "Delete this clinic?" }, class: "btn btn-sm btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
