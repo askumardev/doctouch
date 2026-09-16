@@ -7,7 +7,6 @@
 * docker compose exec web rails db:create
 * docker compose exec web rails db:migrate
 * docker compose exec web rails db:seed
-* docker compose exec web rails console
 
 ```
 ## Server up after setup
