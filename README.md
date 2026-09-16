@@ -14,4 +14,5 @@
 ```
 * docker compose up
 * docker compose down
+* docker compose exec web rails console
 ```
