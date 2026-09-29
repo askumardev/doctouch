@@ -26,3 +26,7 @@
 NoPermissions (FileSystemError): Error: EACCES: permission denied
 * sudo chown -R askumar:askumar /home/askumar/code/doctouch
 ```
+
+## important generation commands
+* docker compose exec web rails generate model Product name:string
+* docker compose exec web rails generate controller Products index
