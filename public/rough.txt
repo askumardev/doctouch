@@ -1,0 +1,39 @@
+callbacks order:
+
+
+dt_web      | Started POST "/products" for 172.18.0.1 at 2026-09-29 09:05:22 +0000
+dt_web      | Cannot render console from 172.18.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+dt_web      | Processing by ProductsController#create as TURBO_STREAM
+dt_web      |   Parameters: {"authenticity_token" => "[FILTERED]", "product" => {"name" => "Pencil2"}, "commit" => "Create Product"}
+dt_web      | ****before validation****
+dt_web      | ****after validation****
+dt_web      | ****before save****
+dt_web      | ****before create callback****
+dt_web      |   TRANSACTION (1.1ms)  BEGIN /*action='create',application='Doctouch',controller='products'*/
+dt_web      |   ↳ app/controllers/products_controller.rb:17:in 'ProductsController#create'
+dt_web      |   Product Create (3.3ms)  INSERT INTO "products" ("name", "created_at", "updated_at") VALUES ('pencil2', '2026-09-29 09:05:22.767145', '2026-09-29 09:05:22.767145') RETURNING "id" /*action='create',application='Doctouch',controller='products'*/
+dt_web      |   ↳ app/controllers/products_controller.rb:17:in 'ProductsController#create'
+dt_web      | ****after create****
+dt_web      | ****after save****
+dt_web      |   TRANSACTION (226.0ms)  COMMIT /*action='create',application='Doctouch',controller='products'*/
+dt_web      |   ↳ app/controllers/products_controller.rb:17:in 'ProductsController#create'
+dt_web      | ****after commit****
+dt_web      | ****after create commit****
+dt_web      | Redirected to http://localhost:3000/products/8
+dt_web      | ↳ app/controllers/products_controller.rb:18:in 'ProductsController#create'
+dt_web      | Completed 302 Found in 235ms (ActiveRecord: 228.1ms (1 query, 0 cached) | GC: 0.0ms)
+dt_web      |
+dt_web      |
+dt_web      | Started GET "/products/8" for 172.18.0.1 at 2026-09-29 09:05:23 +0000
+dt_web      | Cannot render console from 172.18.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+dt_web      | Processing by ProductsController#show as TURBO_STREAM
+dt_web      |   Parameters: {"id" => "8"}
+dt_web      |   Product Load (1.0ms)  SELECT "products".* FROM "products" WHERE "products"."id" = 8 LIMIT 1 /*action='show',application='Doctouch',controller='products'*/
+dt_web      |   ↳ app/controllers/products_controller.rb:44:in 'ProductsController#set_product'
+dt_web      |   Rendering layout layouts/application.html.erb
+dt_web      |   Rendering products/show.html.erb within layouts/application
+dt_web      |   Rendered products/show.html.erb within layouts/application (Duration: 1.0ms | GC: 0.0ms)
+dt_web      |   Rendered layout layouts/application.html.erb (Duration: 3.7ms | GC: 0.0ms)
+dt_web      | Completed 200 OK in 7ms (Views: 4.3ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+dt_web      |
+dt_web      |

@@ -25,5 +25,5 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   root "landing#index"
-  resources :products #, only: [:index]
+  resources :products # , only: [:index]
 end

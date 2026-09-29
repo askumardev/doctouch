@@ -1,5 +1,8 @@
 # Set up
 ```
+* docker compose exec web ruby -v
+* docker compose exec web rails -v
+* ------------------------------------
 * docker compose down
 * docker compose up --build
 * docker compose ps
@@ -30,3 +33,6 @@ NoPermissions (FileSystemError): Error: EACCES: permission denied
 ## important generation commands
 * docker compose exec web rails generate model Product name:string
 * docker compose exec web rails generate controller Products index
+
+* docker compose exec web bin/rubocop -a
+* docker compose exec web bin/brakeman
