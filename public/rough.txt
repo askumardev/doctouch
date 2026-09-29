@@ -5,16 +5,23 @@ dt_web      | Started POST "/products" for 172.18.0.1 at 2026-09-29 09:05:22 +00
 dt_web      | Cannot render console from 172.18.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
 dt_web      | Processing by ProductsController#create as TURBO_STREAM
 dt_web      |   Parameters: {"authenticity_token" => "[FILTERED]", "product" => {"name" => "Pencil2"}, "commit" => "Create Product"}
+# before_validation: normalize_name lowercases the submitted name before validation.
 dt_web      | ****before validation****
+# after_validation: validation has finished; this callback logs even if errors exist.
 dt_web      | ****after validation****
+# before_save: runs for both creates and updates, just before persistence.
 dt_web      | ****before save****
+# before_create: create-only callback, immediately before the new row is inserted.
 dt_web      | ****before create callback****
+# Active Record opens the transaction, then issues the INSERT for the new product.
 dt_web      |   TRANSACTION (1.1ms)  BEGIN /*action='create',application='Doctouch',controller='products'*/
 dt_web      |   ↳ app/controllers/products_controller.rb:17:in 'ProductsController#create'
 dt_web      |   Product Create (3.3ms)  INSERT INTO "products" ("name", "created_at", "updated_at") VALUES ('pencil2', '2026-09-29 09:05:22.767145', '2026-09-29 09:05:22.767145') RETURNING "id" /*action='create',application='Doctouch',controller='products'*/
 dt_web      |   ↳ app/controllers/products_controller.rb:17:in 'ProductsController#create'
+# after_create: the row has been inserted; after_save then runs for this create.
 dt_web      | ****after create****
 dt_web      | ****after save****
+# The transaction commits; after_commit and then the create-only after_create_commit run.
 dt_web      |   TRANSACTION (226.0ms)  COMMIT /*action='create',application='Doctouch',controller='products'*/
 dt_web      |   ↳ app/controllers/products_controller.rb:17:in 'ProductsController#create'
 dt_web      | ****after commit****
